@@ -51,6 +51,7 @@ def check_file_exists(file_name):
 
 def check_files_exists_if_not_overwrite(src, dest):
     """Checks if files exists and if not overwrite"""
+    f, f2 = None, None
     if not check_file_exists(src):
         f = create_file(src)
     if not check_file_exists(dest):
@@ -60,12 +61,14 @@ def check_files_exists_if_not_overwrite(src, dest):
         return False
     return True
 
-def sum_group_numbers(src, dest):
+def sum_group_numbers():
     """"Sums numbers in groups in src and writes result to dest"""
+    src = input(str("Enter source file name: "))
+    dest = input(str("Enter destination file name: "))
     correct = check_files_exists_if_not_overwrite(src, dest)
     if not correct:
+        print("Nothing to do here")
         return
-    src_file = open(src)
     file_src = open(src)
     try:
         file_dest = open(dest, "w")
@@ -80,3 +83,5 @@ def sum_group_numbers(src, dest):
             file_dest.close()
     finally:
         file_src.close()
+
+sum_group_numbers()
